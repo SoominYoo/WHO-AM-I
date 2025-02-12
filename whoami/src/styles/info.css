@@ -1,0 +1,116 @@
+/* 전체 컨테이너 */
+.Info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid black;
+}
+
+/* 이미지 스타일 */
+.Info_image {
+    display: flex;
+    justify-content: center;
+    margin-top: 53px;
+    margin-bottom: 25px;
+    border: 1px solid red;
+}
+
+/* 이미지 크기 */
+.Info_image img {
+    width: 100%;
+    height: auto;
+    max-width: 1168px;
+}
+
+/* 입력 폼 */
+.Info_form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 873px;
+    width: 100%;
+    gap: 17px;
+    justify-items: center;
+    border: 1px solid blue;
+    margin-bottom: 80px;
+}
+
+/* 입력 필드, 라벨 정렬 */
+.Info_form div {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid green;
+}
+
+/* 라벨 */
+.Info_form label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px; /* label 아래쪽 마진 추가 */
+}
+
+
+
+/* 공통 입력 필드 */
+.Info_form input,
+.react-datepicker__input-container input,
+.Info_form select {
+    width: 401px;
+    height: 59px;
+    padding: 10px;
+    border: 1px solid #8E8E93;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: white;
+    appearance: none; /* 기본 스타일 제거 */
+}
+
+/* 드롭다운 화살표 아이콘 */
+.Info_form select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><path fill='gray' d='M12 15.5l6-6H6l6 6z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+}
+
+
+/* 입력 필드 포커스 */
+.Info_form input:focus,
+.react-datepicker__input-container input:focus,
+.Info_form select:focus {
+    border-color: #B9D889;
+    outline: none;
+    box-shadow: 0 0 2px #B9D889;
+}
+
+/* DatePicker */
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.Info_button {
+    display: flex;
+    justify-content: center;
+}
+
+.Info_button button {
+    width: 484px;
+    height: 57px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #444444;
+    background-color: #9C9C9C;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Info_button button:hover {
+    background-color: #B9D889;
+    border:none;
+}
