@@ -6,7 +6,7 @@
     justify-content: flex-start;
     width: 100vw;
     height: 100vh;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 /* 이미지 스타일 */
@@ -15,7 +15,7 @@
     justify-content: center;
     margin-top: 53px;
     margin-bottom: 25px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 /* 이미지 크기 */
@@ -33,15 +33,15 @@
     width: 100%;
     gap: 17px;
     justify-items: center;
-    border: 1px solid blue;
     margin-bottom: 80px;
+    /* border: 1px solid blue; */
 }
 
 /* 입력 필드, 라벨 정렬 */
 .Info_form div {
     display: flex;
     flex-direction: column;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 /* 라벨 */
