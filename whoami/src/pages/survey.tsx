@@ -113,28 +113,54 @@ const Survey = () => {
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
+    } else {
+      window.location.href = '/result';
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(prev => prev - 1);
+    } else {
+      window.location.href = '/';
     }
   };
 
   return (
     <div className="Survey">
-      <div className="progress-bar">
-        <div 
-          className="progress-fill"
-          style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
-        />
+      <div className="navigation-container">
+        <button 
+          className="Survey_back"
+          onClick={handlePrevious}
+          disabled={currentQuestionIndex === 0}
+        >
+          ＜
+        </button>
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div 
+              className="progress-fill"
+              style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+            />
+          </div>
+        </div>
       </div>
       <div className="Survey_content">
-        <h1>{currentQuestion.question}</h1>
+        <h1 className={`question ${currentQuestion.question.includes('\n') ? 'long-text' : ''}`}>
+          {currentQuestion.question}
+        </h1>
         <div className="progress-text">
           {currentQuestionIndex + 1} / {questions.length}
         </div>
         <div className="Survey_options">
+          {Array(5 - currentQuestion.options.length).fill(null).map((_, index) => (
+            <div key={`empty-${index}`} className="empty-option"></div>
+          ))}
           {currentQuestion.options.map((option) => (
             <button
               key={option}
               onClick={() => handleOptionSelect(option)}
-              className={answers[currentQuestionIndex] === option ? 'selected' : ''}
+              className={`${answers[currentQuestionIndex] === option ? 'selected' : ''} ${option.includes('\n') ? 'long-text' : ''}`}
             >
               {option}
             </button>
