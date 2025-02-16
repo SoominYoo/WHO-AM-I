@@ -1,0 +1,109 @@
+.Survey {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  color: #333333;
+}
+
+.progress-bar {
+  width: 80%;
+  max-width: 1200px;
+  height: 12px;
+  background-color: #E5E5EA;
+  overflow: hidden;
+  margin-top: 60px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #B9D889;
+  transition: width 0.3s ease-in-out;
+}
+
+.Survey_content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 40px;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.Survey h1 {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  color: #333333;
+  white-space: pre-line;
+  margin-bottom: 30px;
+}
+
+.progress-text {
+  text-align: center;
+  font-size: 24px;
+  color: #666666;
+  margin-bottom: 50px;
+}
+
+.Survey_options {/*선택지 박스 길이*/
+  display: flex;
+  flex-direction: column;
+  gap: 70px; 
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Survey_options button {/*선택지 텍스트 설정*/
+  width: 100%;
+  height: auto;
+  min-height: 80px;
+  border: 2px solid #8E8E93;
+  border-radius: 12px;
+  background-color: white;
+  font-size: 30px;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 20px 30px;
+  white-space: pre-line;
+  text-align: center;
+}
+
+.Survey_options button:hover {
+  border-color: #B9D889;
+  transform: scale(1.02);
+}
+
+.Survey_options button.selected {
+  border: 10px solid #B9D889;
+  
+  
+}
+
+.Survey_next { /*다음으로 넘어가기 버튼*/
+  margin-top: 60px;
+  width: 900px; /* 여기서 버튼의 가로 길이를 조절할 수 있습니다 */
+  height: 70px;
+  border: none;
+  border-radius: 35px;
+  background-color: #B9D889;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.Survey_next:hover {
+  transform: scale(1.05);
+}
+
+.Survey_next:disabled {
+  background-color: #E5E5EA;
+  cursor: not-allowed;
+  transform: none;
+}
