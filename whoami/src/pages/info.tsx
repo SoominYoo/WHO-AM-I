@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import pcMain from "../assets/images/pc_main.png";
 import "../styles/info.css";
 
 const InfoPage: React.FC = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         studentId: "",
@@ -21,7 +23,10 @@ const InfoPage: React.FC = () => {
     };
 
     const handleNextStep = () => {
-        console.log("다음 단계로 이동", formData); // 나중에 라우터 지정
+        // 입력된 데이터를 로컬 스토리지에 저장
+        localStorage.setItem('userInfo', JSON.stringify(formData));
+        // Survey 페이지로 이동
+        navigate('/survey');
     };
 
     return (
