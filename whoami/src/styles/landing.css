@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 335px;
+    margin-top: 300px;
     /* border: 1px solid red; */
 }
 
@@ -40,6 +40,8 @@
     margin-top: 113px;;
     border-radius: 30px;
     font-size: 20px; 
+    font-weight: bold;
+    color: #444444;
     background-color: #B9D889;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -47,6 +49,5 @@
 
 /* 버튼 효과 */
 .Button button:hover {
-   font-weight: bold;
    border: none;
 }

@@ -73,7 +73,7 @@ const InfoPage: React.FC = () => {
                         name="major"
                         value={formData.major}
                         onChange={handleChange}
-                        className="w-full border rounded-md p-2">
+                        className="Info_form_select">
 
                         <option value="">학부를 선택하세요</option>
                         <option value="글로벌리더십학부">글로벌리더십학부</option>
@@ -101,7 +101,7 @@ const InfoPage: React.FC = () => {
                         name="mbti"
                         value={formData.mbti}
                         onChange={handleChange}
-                        className="w-full border rounded-md p-2">
+                        className="Info_form_select">
 
                         <option value="">MBTI를 선택하세요</option>
                         <option value="ISTJ">ISTJ</option>

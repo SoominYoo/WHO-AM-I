@@ -63,9 +63,15 @@
     border: 1px solid #8E8E93;
     border-radius: 8px;
     font-size: 16px;
+    color: #8E8E93;
     box-sizing: border-box;
     background-color: white;
     appearance: none; /* 기본 스타일 제거 */
+}
+
+/* 드롭다운 스타일 지정 */
+.Info_form_select{
+    color-scheme: white;
 }
 
 /* 드롭다운 화살표 아이콘 */
