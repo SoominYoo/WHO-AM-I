@@ -16,16 +16,36 @@ const InfoPage: React.FC = () => {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+        const { name, value } = e.target;
+
+        if (name === "studentId") {
+            // 숫자만 입력되도록 하고, 최대 8자까지 제한
+            const numericValue = value.replace(/\D/g, ""); // 숫자가 아닌 문자 제거
+            if (numericValue.length <= 8) {
+                setFormData({
+                    ...formData,
+                    [name]: numericValue,
+                });
+            }
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
     };
 
     const handleNextStep = () => {
+        // 모든 필드가 입력되었는지 확인
+        const { name, studentId, birthDate, major, mbti, residence } = formData;
+        if (!name || !studentId || !birthDate || !major || !mbti || !residence) {
+            alert("모든 필드를 입력해주세요.");
+            return;
+        }
+
         // 입력된 데이터를 로컬 스토리지에 저장
         localStorage.setItem('userInfo', JSON.stringify(formData));
-        // Survey 페이지로 이동
+        // Survey 페이지로 이동 -> 나중엑 결과 나오는 페이지로 라우팅 지정하기 
         navigate('/survey');
     };
 
