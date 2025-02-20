@@ -16,13 +16,33 @@ const InfoPage: React.FC = () => {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+        const { name, value } = e.target;
+
+        if (name === "studentId") {
+            // 숫자만 입력되도록 하고, 최대 8자까지 제한
+            const numericValue = value.replace(/\D/g, ""); // 숫자가 아닌 문자 제거
+            if (numericValue.length <= 8) {
+                setFormData({
+                    ...formData,
+                    [name]: numericValue,
+                });
+            }
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
     };
 
     const handleNextStep = () => {
+        // 모든 필드가 입력되었는지 확인
+        const { name, studentId, birthDate, major, mbti, residence } = formData;
+        if (!name || !studentId || !birthDate || !major || !mbti || !residence) {
+            alert("모든 필드를 입력해주세요.");
+            return;
+        }
+
         const userInfo = {
             name: formData.name,
             birthDate: formData.birthDate,
@@ -86,7 +106,7 @@ const InfoPage: React.FC = () => {
                         name="major"
                         value={formData.major}
                         onChange={handleChange}
-                        className="w-full border rounded-md p-2">
+                        className="Info_form_select">
 
                         <option value="">학부를 선택하세요</option>
                         <option value="글로벌리더십학부">글로벌리더십학부</option>
@@ -114,7 +134,7 @@ const InfoPage: React.FC = () => {
                         name="mbti"
                         value={formData.mbti}
                         onChange={handleChange}
-                        className="w-full border rounded-md p-2">
+                        className="Info_form_select">
 
                         <option value="">MBTI를 선택하세요</option>
                         <option value="ISTJ">ISTJ</option>

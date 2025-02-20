@@ -7,16 +7,20 @@
     background-color: white;
     width: 100vw;
     height: 100vh;
-    /* border: 1px solid black; */
 }
 
 /* 이미지 스타일 */
 .Info_image {
     display: flex;
     justify-content: center;
-    margin-top: 53px;
-    margin-bottom: 25px;
-    /* border: 1px solid red; */
+    margin-top: 33px; /* 다시 수정해야함!! */
+}
+
+/* 반응형 (이미지 스타일) */
+@media (max-width: 470px) {
+    .Info_image {
+        margin-top: 9px;
+    }
 }
 
 /* 이미지 크기 */
@@ -24,6 +28,14 @@
     width: 100%;
     height: auto;
     max-width: 1168px;
+}
+
+/* 반응형 (이미지 크기) */
+@media (max-width: 480px) {
+    .Info_image img {
+        width: 319px;
+        height: 63px;
+    }
 }
 
 /* 입력 폼 */
@@ -34,25 +46,43 @@
     width: 100%;
     gap: 17px;
     justify-items: center;
+    margin-top: 25px;
     margin-bottom: 80px;
-    /* border: 1px solid blue; */
+}
+
+/* 반응형 (입력 폼) */
+@media (max-width: 480px) {
+    .Info_form {
+        grid-template-columns: 1fr;
+        /* 1열로 변경 */
+        margin-top: 5px;
+        gap: 9px;
+        margin-bottom: 39px;
+    }
 }
 
 /* 입력 필드, 라벨 정렬 */
 .Info_form div {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid green; */
 }
 
 /* 라벨 */
 .Info_form label {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 16px; /* label 아래쪽 마진 추가 */
+    font: #444444;
+    margin-bottom: 16px;
+    /* label 아래쪽 마진 추가 */
 }
 
-
+@media(max-width: 480px) {
+    .Info_form label {
+        font-size: 16px;
+        margin-bottom: 4px;
+        margin-left: 5px;
+    }
+}
 
 /* 공통 입력 필드 */
 .Info_form input,
@@ -64,10 +94,24 @@
     border: 1px solid #8E8E93;
     border-radius: 8px;
     font-size: 16px;
+    color: #8E8E93;
     box-sizing: border-box;
     background-color: white;
     color: black;
-    appearance: none; /* 기본 스타일 제거 */
+    appearance: none;
+    /* 기본 스타일 제거 */
+}
+
+/* 반응형 (공통 입력 필드) */
+@media (max-width: 480px) {
+
+    .Info_form input,
+    .react-datepicker__input-container input,
+    .Info_form select {
+        width: 263px;
+        height: 42px;
+        font-size: 12px;
+    }
 }
 
 /* 드롭다운 화살표 아이콘 */
@@ -86,7 +130,6 @@
 .Info_form select:focus {
     border-color: #B9D889;
     outline: none;
-    box-shadow: 0 0 2px #B9D889;
 }
 
 /* DatePicker */
@@ -105,15 +148,24 @@
     height: 57px;
     font-size: 20px;
     font-weight: bold;
-    color: #444444;
+    color: #FFFFFF;
     background-color: #9C9C9C;
     border-radius: 30px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 반응형 (버튼 스타일) */
+@media(max-width: 480px) {
+    .Info_button button {
+        width: 280px;
+        height: 41px;
+        font-size: 16px;
+    }
 }
 
 .Info_button button:hover {
     background-color: #B9D889;
-    border:none;
+    color: #444444;
 }

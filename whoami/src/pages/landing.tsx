@@ -28,9 +28,9 @@ const LandingPage: React.FC = () => {
             {/* 버튼 (2개 컬럼 구조) */}
             <div className="Button">
                 {/* 시작 버튼 */}
-                <button onClick={handleNextStep}>시작하기</button>
+                <button className = "StartButton" onClick={handleNextStep}>시작하기</button>
                 {/* 공유 버튼 */}
-                <button onClick={handleShare}>콘텐츠 공유하기</button>
+                <button className = "ShareButton" onClick={handleShare}>콘텐츠 공유하기</button>
             </div>
 
         </div>
