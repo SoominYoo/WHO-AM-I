@@ -1,13 +1,27 @@
 .Survey {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-  color: #333333;
+  padding: 20px;
+  box-sizing: border-box;
   position: relative;
-  overflow: hidden;
+}
+
+.Survey_progress {
+  width: 100%;
+  height: 4px;
+  background-color: #E5E5EA;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.Survey_progress_bar {
+  height: 100%;
+  background-color: #B9D889;
+  transition: width 0.3s ease;
 }
 
 .navigation-container {
@@ -15,8 +29,9 @@
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  margin: 30px auto 0;
-  padding: 0 40px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .progress-container {
@@ -41,6 +56,21 @@
   max-width: 1000px;
 }
 
+@media screen and (max-width: 768px) {
+  .navigation-container {
+    padding: 0 10px;
+    margin: 10px auto 0;
+  }
+  
+  .progress-bar-container {
+    width: 90%;
+  }
+  
+  .Survey h1 {
+    font-size: 36px;
+  }
+}
+
 .progress-bar {
   width: 100%;
   height: 10px;
@@ -51,13 +81,22 @@
 .progress-fill {
   height: 100%;
   background-color: #B9D889;
+  border-radius: 5px;
+  transition: width 0.3s ease;
 }
 
 .progress-text { 
   text-align: center;
   font-size: 30px;
-  color: #444444;
-  margin: 0;
+  color: #666;
+  margin: 20px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .progress-text {
+    font-size: 24px;
+    margin: 15px 0;
+  }
 }
 
 .Survey_back {
@@ -91,8 +130,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 40px;
+  padding: 20px 20px;
   box-sizing: border-box;
+  flex: 1;
 }
 
 .Survey h1 {
@@ -110,37 +150,14 @@
 }
 
 .Survey_options {
-  position: relative;
   width: 100%;
   max-width: 800px;
-  margin: 0 auto;
-  padding: 0 40px;
-  height: 700px;
-}
-
-.Survey_options button:nth-child(1) {
-  position: absolute;
-  top: 70px;
-}
-
-.Survey_options button:nth-child(2) {
-  position: absolute;
-  top: 210px;
-}
-
-.Survey_options button:nth-child(3) {
-  position: absolute;
-  top: 350px;
-}
-
-.Survey_options button:nth-child(4) {
-  position: absolute;
-  top: 490px;
-}
-
-.Survey_options button:nth-child(5) {
-  position: absolute;
-  top: 630px;
+  margin: auto 0 0;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  box-sizing: border-box;
 }
 
 .Survey_options button {
@@ -155,12 +172,7 @@
   padding: 20px 30px;
   white-space: pre-line;
   text-align: center;
-  left: 40px;
-  right: 40px;
-}
-
-.Survey_options button.long-text {
-  gap: 40px;
+  box-sizing: border-box;
 }
 
 .Survey_options button:hover {
@@ -172,27 +184,122 @@
   outline: none;
 }
 
+@media screen and (max-width: 768px) {
+  .Survey_options {
+    padding: 0 16px;
+    gap: 20px;
+  }
+
+  .Survey_options button {
+    min-height: 60px;
+    border: 2px solid #8E8E93;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 15px 20px;
+  }
+
+  .Survey_options button.selected {
+    background-color: #B9D889;
+    border: none;
+    color: #333333;
+  }
+}
+
 .Survey_next {
-  position: fixed;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
+  width: calc(100% - 40px);
+  max-width: 900px;
+  margin: 200px auto 0;
   height: 70px;
-  border: none;
-  border-radius: 35px;
   background-color: #B9D889;
-  color: black;
+  border: none;
+  border-radius: 12px;
+  color: #333333;
   font-size: 24px;
-  font-weight: bold;
   cursor: pointer;
+  position: relative;
 }
 
-.Survey_next:hover {
-  opacity: 1;
+@media screen and (max-width: 768px) {
+  .Survey_next {
+    width: calc(100% - 32px);
+    margin: 100px auto 0;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 18px;
+  }
 }
 
-.Survey_next:disabled {
-  color: black;
-  cursor: not-allowed;
+@media screen and (max-width: 480px) {
+  .Survey_next {
+    margin: 80px auto 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Survey {
+    padding-bottom: 80px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .Survey_content {
+    padding: 20px 20px;
+    margin-bottom: 0;
+  }
+
+  .Survey_options {
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .Survey h1 {
+    font-size: 28px;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Survey {
+    padding-bottom: 60px;
+  }
+
+  .Survey_content {
+    padding: 15px;
+  }
+
+  .Survey_options {
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .Survey_options button {
+    min-height: 50px;
+    font-size: 16px;
+    padding: 12px 15px;
+  }
+
+  .Survey h1 {
+    font-size: 24px;
+  }
+
+  .Survey_next {
+    margin: 30px auto 0;
+    height: 50px;
+    font-size: 18px;
+  }
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }

@@ -1,0 +1,140 @@
+@font-face {
+  font-family: 'OnGolJip';
+  src: url('../fonts/온글잎.ttf') format('truetype');
+}
+
+.Result {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.Result_container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px;
+  border: 1px dashed #000;
+  box-sizing: border-box;
+}
+
+.Result h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.Result_profile {
+  display: flex;
+  gap: 60px;
+}
+
+.Result_profile_left {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.Result_profile_image {
+  width: 200px;
+  height: 200px;
+}
+
+.Result_profile_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.Result_profile_info {
+  text-align: center;
+}
+
+.Result_profile_info h2 {
+  font-family: 'OnGolJip', sans-serif;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.Result_profile_info p {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.Result_profile_right {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.Result_answer_item h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.Result_answer_item p {
+  font-size: 16px;
+  color: #666;
+}
+
+.Result_answer_item p.highlight {
+  color: #B9D889;
+}
+
+.Result_actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.Result_share {
+  padding: 15px 30px;
+  background-color: #B9D889;
+  border: none;
+  border-radius: 30px;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.Result_retry {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.Result_retry img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .Result_container {
+    padding: 20px;
+  }
+
+  .Result_profile {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .Result_profile_left {
+    flex: none;
+  }
+
+  .Result_profile_right {
+    grid-template-columns: 1fr;
+  }
+}

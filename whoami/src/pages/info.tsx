@@ -23,10 +23,18 @@ const InfoPage: React.FC = () => {
     };
 
     const handleNextStep = () => {
-        // 입력된 데이터를 로컬 스토리지에 저장
-        localStorage.setItem('userInfo', JSON.stringify(formData));
-        // Survey 페이지로 이동
-        navigate('/survey');
+        const userInfo = {
+            name: formData.name,
+            birthDate: formData.birthDate,
+            mbti: formData.mbti,
+            enneagram: formData.studentId,
+            address: formData.residence
+        };
+        
+        // Survey 페이지로 이동하면서 userInfo를 state로 전달
+        navigate('/survey', {
+            state: { userInfo }
+        });
     };
 
     return (

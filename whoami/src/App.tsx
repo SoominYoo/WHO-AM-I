@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./pages/landing";
 import InfoPage from "./pages/info";
 import Survey from "./pages/survey";
+import Result from "./pages/result";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/survey",
     element: <Survey />,
+  },
+  {
+    path: "/result",
+    element: <Result />,
   },
 ], {
   future: {
