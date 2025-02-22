@@ -2,6 +2,21 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../styles/result.css';
 import intp from '../assets/images/INTP.png';
+import intj from '../assets/images/INTJ.png';
+import infp from '../assets/images/INFP.png';
+import infj from '../assets/images/INFJ.png';
+import istp from '../assets/images/ISTP.png';
+import istj from '../assets/images/ISTJ.png';
+import isfp from '../assets/images/ISFP.png';
+import isfj from '../assets/images/ISFJ.png';
+import entp from '../assets/images/ENTP.png';
+import entj from '../assets/images/ENTJ.png';
+import enfp from '../assets/images/ENFP.png';
+import enfj from '../assets/images/ENFJ.png';
+import estp from '../assets/images/ESTP.png';
+import estj from '../assets/images/ESTJ.png';
+import esfp from '../assets/images/ESFP.png';
+import esfj from '../assets/images/ESFJ.png';
 
 interface UserInfo {
   name: string;
@@ -15,6 +30,25 @@ interface Answer {
   question: string;
   answer: string;
 }
+
+const mbtiImages = {
+  'INTP': intp,
+  'INTJ': intj,
+  'INFP': infp,
+  'INFJ': infj,
+  'ISTP': istp,
+  'ISTJ': istj,
+  'ISFP': isfp,
+  'ISFJ': isfj,
+  'ENTP': entp,
+  'ENTJ': entj,
+  'ENFP': enfp,
+  'ENFJ': enfj,
+  'ESTP': estp,
+  'ESTJ': estj,
+  'ESFP': esfp,
+  'ESFJ': esfj,
+};
 
 const Result: React.FC = () => {
   const location = useLocation();
@@ -31,7 +65,7 @@ const Result: React.FC = () => {
     answers: Answer[];
   };
 
-  const profileImage = userInfo.mbti === 'INTP' ? intp : '';
+  const profileImage = mbtiImages[userInfo.mbti as keyof typeof mbtiImages] || '';
 
   return (
     <div className="Result">
@@ -40,8 +74,13 @@ const Result: React.FC = () => {
         
         <div className="Result_profile">
           <div className="Result_profile_left">
-            <div className="Result_profile_image">
-              <img src={profileImage} alt="프로필 이미지" />
+            <div className="Result_profile_image_container">
+              <div className="Result_mbti_text">{userInfo.mbti}</div>
+              <img
+                className="Result_profile_image"
+                src={profileImage}
+                alt="프로필 이미지"
+              />
             </div>
             <div className="Result_profile_info">
               <h2>{userInfo.name}</h2>
@@ -52,20 +91,29 @@ const Result: React.FC = () => {
           </div>
           
           <div className="Result_profile_right">
-            {answers.map((item, index) => (
-              <div key={index} className="Result_answer_item">
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
+            <div className="Result_answers_left">
+              {answers.slice(0, 5).map((item, index) => (
+                <div key={index} className="Result_answer_item">
+                  <h3 style={{ whiteSpace: 'pre-line' }}>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </div>
+              ))}
+            </div>
+            <div className="Result_answers_right">
+              {answers.slice(5).map((item, index) => (
+                <div key={index} className="Result_answer_item">
+                  <h3 style={{ whiteSpace: 'pre-line' }}>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </div>
+              ))}
+              <div className="Result_buttons">
+                <button className="share_button" onClick={() => {}}>결과지 공유하기</button>
+                <button className="retry_button" onClick={() => navigate('/info')}>
+                  <img src="/src/assets/images/refresh-cw-01.png" alt="다시하기" />
+                </button>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-
-        <div className="Result_actions">
-          <button className="Result_share">결과지를 곧 넣어 저장해주세요</button>
-          <button className="Result_retry" onClick={() => navigate('/info')}>
-            <img src="/retry.svg" alt="다시하기" />
-          </button>
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ interface UserInfo {
 const questions = [
   {
     question: "당신의 사랑의 언어는??",
+    resultQuestion: "당신의 사랑의 언어는??",
     options: [
       "A. 칭찬과 격려의 말",
       "B. 함께 시간을 보내기",
@@ -30,7 +31,8 @@ const questions = [
     ]
   },
   {
-    question: "팀모임을 가야하는 지금!\n나의 선택은?",
+    question: "팀모임을 가야하는 지금!\n 나의 선택은?",
+    resultQuestion: "팀모임을 가야하는\n 지금! 나의 선택은?",
     options: [
       "A. 여유롭게 들어가고 원하는 자리 앉을거야\n10분전에 가는 유형!",
       "B. 일단 도착만 하면 된거지! 음료도 한 잔 사고~ \n시간에 딱 맞춰서 가는 유형!"
@@ -39,9 +41,10 @@ const questions = [
       "A.여유롭게 들어가 원하는\n 자리 앉을거야 10분전에 가는 유형!",
       "B.일단 도착만 하면 된거지!!\n 시간에 딱 맞춰서 가는 유형!"
     ]
-  },
+  }, 
   {
     question: "나는 학교에서 밥먹을 때",
+    resultQuestion: "나는 학교에서 밥먹을 때",
     options: [
       "A. 엄마 밥 먹고 싶어? 밥스",
       "B. 나랑 푸프 쓰러 갈래? 학관",
@@ -57,6 +60,7 @@ const questions = [
   },
   {
     question: "나의 수면 스타일은?",
+    resultQuestion: "나의 수면 스타일은?",
     options: [
       "A. 얼리버드",
       "B. 올빼미",
@@ -69,7 +73,8 @@ const questions = [
     ]
   },
   {
-    question: "오석 앞 벤치에 앉아있다.\n지금 듣고 싶은 노래는?",
+    question: "오석 앞 벤치에 앉아있다. \n듣고 싶은 노래는?",
+    resultQuestion: "오석 앞 벤치에 앉아있다.\n 날도 좋은데 듣고 싶은 노래는?",
     options: [
       "A. 방구석 에스파가 되. K-POP",
       "B. ㄴr는 ㅈl금 감성에 취한ㄷr...어쿠스틱",
@@ -86,7 +91,8 @@ const questions = [
     ]
   },
   {
-    question: "오랜만에 쉬는 날!\n당신은 무엇을 하실 건가요?",
+    question: "오랜만에 쉬는 날! \n당신은 무엇을 하실 건가요?",
+    resultQuestion: "오랜만에 쉬는 날! \n당신은 무엇을 하실 건가요?",
     options: [
       "A. 날도 좋으니, 친구와 바다를 보러 간다.",
       "B. 오랜만에 생긴 나만의 시간이니\n침대와 함께 데이트를 한다."
@@ -98,6 +104,7 @@ const questions = [
   },
   {
     question: "친구들이 생각하는 나는...?",
+    resultQuestion: "친구들이 생각하는 나는...?",
     options: [
       "A. 천진난만 강아지",
       "B. 차분한 고양이",
@@ -113,17 +120,19 @@ const questions = [
   },
   {
     question: "친구와 다툰 후 해결 방법은?",
+    resultQuestion: "친구와 다툰 후 해결 방법은?",
     options: [
       "A. 바로 이야기 해서 해결하는 스타일",
       "B. 시간을 두고 생각한 후 이야기하는 스타일"
     ],
     mobileOptions: [
       "A.바로 이야기 해서 해결하는 스타일",
-      "B.시간을 두고 이야기하는 스타일"
+      "B.시간을 두고 생각한 후 이야기하는 스타일"
     ]
   },
   {
     question: "나는 이런 취미가 좋아요~!",
+    resultQuestion: "나는 이런 취미가 좋아요~!",
     options: [
       "A. 오늘 개봉한 영화가 뭐지? 영화 보기",
       "B. 쇠질에 중독되버려~ 헬스하기",
@@ -139,6 +148,7 @@ const questions = [
   },
   {
     question: "내가 좋아하는 영화 장르는",
+    resultQuestion: "내가 좋아하는 영화 장르는",
     options: [
       "A. 핑크풍 가득한 로맨스",
       "B. 배꼽 찾으러 떠나는 코미디",
@@ -154,6 +164,7 @@ const questions = [
   },
   {
     question: "내가 원하는 팀 분위기는?",
+    resultQuestion: "내가 원하는 팀 분위기는?",
     options: [
       "A. 목표 지향적인 팀",
       "B. 유쾌하고 가벼운 분위기인 팀",
@@ -189,7 +200,7 @@ const Survey: React.FC = () => {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       const surveyAnswers = questions.map((q, index) => ({
-        question: q.question,
+        question: q.resultQuestion,
         answer: selectedAnswers[index]
       }));
 
