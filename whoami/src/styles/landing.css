@@ -27,16 +27,16 @@
     height: auto;
 }
 
-/* 📌 반응형 (태블릿) */
-@media (max-width: 768px) { 
+/* 반응형 (태블릿) */
+/* @media (max-width: 768px) { 
     .Landing_img img {
         width: 70%; 
         max-width: 400px;
     }
-}
+} */
 
 /* 반응형 (모바일) */
-@media (max-width: 480px) {  
+@media (max-width: 360px) {  
     .Landing_img {
         margin-top: 181px;  
     }
@@ -54,7 +54,7 @@
 }
 
 /* 반응형 (버튼 스타일)*/
-@media (max-width: 480px) {
+@media (max-width: 360px) {
     .Button {
         display: grid;
         flex-direction: column;
@@ -75,7 +75,7 @@
 }
 
 /* 모바일 버튼 스타일 */
-@media (max-width: 480px) {
+@media (max-width: 360px) {
     .Button {
         display: flex;
         flex-direction: column;
