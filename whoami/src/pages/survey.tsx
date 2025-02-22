@@ -36,8 +36,8 @@ const questions = [
       "B. 일단 도착만 하면 된거지! 음료도 한 잔 사고~ \n시간에 딱 맞춰서 가는 유형!"
     ],
     mobileOptions: [
-      "A.여유롭게 들어가 원하는\n 자리 앉을거야10분전에 가는 유형!",
-      "B.일단 도착만 하면 된거지!! 음료도 한 잔 사고~ 시간에 딱 맞춰서 가는 유형!"
+      "A.여유롭게 들어가 원하는\n 자리 앉을거야 10분전에 가는 유형!",
+      "B.일단 도착만 하면 된거지!!\n 시간에 딱 맞춰서 가는 유형!"
     ]
   },
   {
@@ -119,7 +119,7 @@ const questions = [
     ],
     mobileOptions: [
       "A.바로 이야기 해서 해결하는 스타일",
-      "B.시간을 두고 생각한 후 이야기하는 스타일"
+      "B.시간을 두고 이야기하는 스타일"
     ]
   },
   {
@@ -202,6 +202,16 @@ const Survey: React.FC = () => {
     }
   };
 
+  const handleBack = () => {
+    const newAnswers = [...selectedAnswers];
+    // 현재 질문 이후의 답변들을 모두 초기화
+    for(let i = currentQuestionIndex; i < questions.length; i++) {
+      newAnswers[i] = '';
+    }
+    setSelectedAnswers(newAnswers);
+    setCurrentQuestionIndex(prev => Math.max(0, prev - 1));
+  };
+
   useEffect(() => {
     if (!userInfo) {
       navigate('/info');
@@ -218,20 +228,39 @@ const Survey: React.FC = () => {
 
   return (
     <div className="Survey">
-      <div className="Survey_progress_container">
-        <img 
-          src={backButton} 
-          alt="back" 
-          className="Survey_back_button"
-          onClick={() => setCurrentQuestionIndex(prev => Math.max(0, prev - 1))}
-        />
-        <div className="Survey_progress">
-          <div 
-            className="Survey_progress_bar" 
-            style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+      {isMobile ? (
+        <>
+          <img 
+            src={backButton} 
+            alt="back" 
+            className="Survey_back_button"
+            onClick={handleBack}
           />
+          <div className="Survey_progress_container">
+            <div className="Survey_progress">
+              <div 
+                className="Survey_progress_bar" 
+                style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+              />
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="Survey_progress_container">
+          <img 
+            src={backButton} 
+            alt="back" 
+            className="Survey_back_button"
+            onClick={handleBack}
+          />
+          <div className="Survey_progress">
+            <div 
+              className="Survey_progress_bar" 
+              style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+            />
+          </div>
         </div>
-      </div>
+      )}
       
       <div className="Survey_content">
         <div className="question_container">
