@@ -242,11 +242,12 @@ const Survey: React.FC = () => {
       {isMobile ? (
         <>
           <img
-            src={backButton}
+            src={`${process.env.PUBLIC_URL}/images/backbutton.png`}
             alt="back"
             className="Survey_back_button"
             onClick={handleBack}
           />
+
           <div className="Survey_progress_container">
             <div className="Survey_progress">
               <div
