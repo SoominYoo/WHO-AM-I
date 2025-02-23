@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "firebase": "^11.3.1",
+    "html2canvas": "^1.4.1",
     "react": "^19.0.0",
-    "react-datepicker": "^8.0.0",
+    "react-datepicker": "^8.1.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5"
   },
@@ -20,6 +21,7 @@
     "@eslint/js": "^9.19.0",
     "@tailwindcss/postcss": "^4.0.6",
     "@types/react": "^19.0.8",
+    "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",

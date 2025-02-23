@@ -17,7 +17,7 @@
 }
 
 /* 반응형 (이미지 스타일) */
-@media (max-width: 360px) {
+@media (max-width: 480px) {
     .Info_image {
         margin-top: 9px;
     }
@@ -31,7 +31,7 @@
 }
 
 /* 반응형 (이미지 크기) */
-@media (max-width: 360px) {
+@media (max-width: 480px) {
     .Info_image img {
         width: 319px;
         height: 63px;
@@ -76,7 +76,7 @@
     /* label 아래쪽 마진 추가 */
 }
 
-@media(max-width: 360px) {
+@media(max-width: 480px) {
     .Info_form label {
         font-size: 16px;
         margin-bottom: 4px;
@@ -103,7 +103,7 @@
 }
 
 /* 반응형 (공통 입력 필드) */
-@media (max-width: 360px) {
+@media (max-width: 480px) {
 
     .Info_form input,
     .react-datepicker__input-container input,
@@ -157,7 +157,7 @@
 }
 
 /* 반응형 (버튼 스타일) */
-@media(max-width: 360px) {
+@media(max-width: 480px) {
     .Info_button button {
         width: 280px;
         height: 41px;

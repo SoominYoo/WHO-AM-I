@@ -36,7 +36,7 @@
 } */
 
 /* 반응형 (모바일) */
-@media (max-width: 360px) {  
+@media (max-width: 480px) {  
     .Landing_img {
         margin-top: 181px;  
     }
@@ -54,7 +54,7 @@
 }
 
 /* 반응형 (버튼 스타일)*/
-@media (max-width: 360px) {
+@media (max-width: 480px) {
     .Button {
         display: grid;
         flex-direction: column;
@@ -75,7 +75,7 @@
 }
 
 /* 모바일 버튼 스타일 */
-@media (max-width: 360px) {
+@media (max-width: 480px) {
     .Button {
         display: flex;
         flex-direction: column;

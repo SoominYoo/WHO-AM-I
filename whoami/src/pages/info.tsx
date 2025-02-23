@@ -48,8 +48,11 @@ const InfoPage: React.FC = () => {
             birthDate: formData.birthDate,
             mbti: formData.mbti,
             enneagram: formData.studentId,
+            major: formData.major,
             address: formData.residence
         };
+
+        console.log(userInfo);
         
         // Survey 페이지로 이동하면서 userInfo를 state로 전달
         navigate('/survey', {

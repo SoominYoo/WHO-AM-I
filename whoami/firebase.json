@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "build",
+    "site": "whoami-d0fbd",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",

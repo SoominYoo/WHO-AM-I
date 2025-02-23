@@ -41,19 +41,19 @@ const questions = [
       "A.여유롭게 들어가 원하는\n 자리 앉을거야 10분전에 가는 유형!",
       "B.일단 도착만 하면 된거지!!\n 시간에 딱 맞춰서 가는 유형!"
     ]
-  }, 
+  },
   {
     question: "나는 학교에서 밥먹을 때",
     resultQuestion: "나는 학교에서 밥먹을 때",
     options: [
-      "A. 엄마 밥 먹고 싶어? 밥스",
-      "B. 나랑 푸프 쓰러 갈래? 학관",
+      "A. 엄마 밥 먹고 싶어? 맘스",
+      "B. 나랑 푸포 쓰러 갈래? 학관",
       "C. 나랑 탕수육 小자 나눠먹을래? 라운지",
       "D. 나랑 파스타 먹을래? 그레이스테이블"
     ],
     mobileOptions: [
-      "A.엄마 밥 먹고 싶어? 밥스",
-      "B.나랑 푸프 쓰러 갈래? 학관",
+      "A.엄마 밥 먹고 싶어? 맘스",
+      "B.나랑 푸포 쓰러 갈래? 학관",
       "C.나랑 탕수육 小자 나눠먹을래? 라운지",
       "D.나랑 파스타 먹을래? 그레이스테이블"
     ]
@@ -150,13 +150,13 @@ const questions = [
     question: "내가 좋아하는 영화 장르는",
     resultQuestion: "내가 좋아하는 영화 장르는",
     options: [
-      "A. 핑크풍 가득한 로맨스",
+      "A. 핑크퐁 가득한 로맨스",
       "B. 배꼽 찾으러 떠나는 코미디",
       "C. 난 제임스 본드가 꿈이야 액션",
       "D. 오싹한게 최고야 호러"
     ],
     mobileOptions: [
-      "A.핑크풍 가득한 로맨스",
+      "A.핑크퐁 가득한 로맨스",
       "B.배꼽 찾으러 떠나는 코미디",
       "C.난 제임스 본드가 꿈이야 액션",
       "D.오싹한게 최고야 호러"
@@ -184,7 +184,7 @@ const Survey: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userInfo = location.state?.userInfo as UserInfo;
-  
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>(new Array(questions.length).fill(''));
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 360);
@@ -216,7 +216,7 @@ const Survey: React.FC = () => {
   const handleBack = () => {
     const newAnswers = [...selectedAnswers];
     // 현재 질문 이후의 답변들을 모두 초기화
-    for(let i = currentQuestionIndex; i < questions.length; i++) {
+    for (let i = currentQuestionIndex; i < questions.length; i++) {
       newAnswers[i] = '';
     }
     setSelectedAnswers(newAnswers);
@@ -227,7 +227,7 @@ const Survey: React.FC = () => {
     if (!userInfo) {
       navigate('/info');
     }
-    
+
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 360);
     };
@@ -241,16 +241,16 @@ const Survey: React.FC = () => {
     <div className="Survey">
       {isMobile ? (
         <>
-          <img 
-            src={backButton} 
-            alt="back" 
+          <img
+            src={backButton}
+            alt="back"
             className="Survey_back_button"
             onClick={handleBack}
           />
           <div className="Survey_progress_container">
             <div className="Survey_progress">
-              <div 
-                className="Survey_progress_bar" 
+              <div
+                className="Survey_progress_bar"
                 style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
               />
             </div>
@@ -258,21 +258,21 @@ const Survey: React.FC = () => {
         </>
       ) : (
         <div className="Survey_progress_container">
-          <img 
-            src={backButton} 
-            alt="back" 
+          <img
+            src={backButton}
+            alt="back"
             className="Survey_back_button"
             onClick={handleBack}
           />
           <div className="Survey_progress">
-            <div 
-              className="Survey_progress_bar" 
+            <div
+              className="Survey_progress_bar"
               style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
             />
           </div>
         </div>
       )}
-      
+
       <div className="Survey_content">
         <div className="question_container">
           <h1>{questions[currentQuestionIndex].question}</h1>
@@ -285,9 +285,8 @@ const Survey: React.FC = () => {
             <div
               key={index}
               onClick={() => handleOptionSelect(option)}
-              className={`Survey_option ${
-                selectedAnswers[currentQuestionIndex] === option ? 'selected' : ''
-              }`}
+              className={`Survey_option ${selectedAnswers[currentQuestionIndex] === option ? 'selected' : ''
+                }`}
             >
               {option}
             </div>
@@ -297,9 +296,9 @@ const Survey: React.FC = () => {
 
       <div className="Survey_buttons">
         <button
-          className="Survey_next"
+          className={`Survey_next ${selectedAnswers[currentQuestionIndex] ? 'active' : ''}`}
           onClick={handleNext}
-          disabled={!selectedAnswers[currentQuestionIndex]}
+          disabled={!selectedAnswers[currentQuestionIndex]}  // 선택되기 전에는 비활성화
         >
           {currentQuestionIndex === questions.length - 1 ? '결과 보기' : '다음으로 넘어가기'}
         </button>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import html2canvas from 'html2canvas'; 
 import '../styles/result.css';
 import intp from '../assets/images/INTP.png';
 import intj from '../assets/images/INTJ.png';
@@ -23,6 +24,7 @@ interface UserInfo {
   birthDate: string;
   mbti: string;
   enneagram: string;
+  major: string;
   address: string;
 }
 
@@ -53,29 +55,56 @@ const mbtiImages = {
 const Result: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+  const resultRef = useRef<HTMLDivElement>(null); // 캡처 영역 참조
+
   // location.state가 없으면 info 페이지로 리다이렉트
   if (!location.state) {
     navigate('/info');
     return null;
   }
 
-  const { userInfo, answers } = location.state as { 
+  const { userInfo, answers } = location.state as {
     userInfo: UserInfo;
     answers: Answer[];
   };
 
   const profileImage = mbtiImages[userInfo.mbti as keyof typeof mbtiImages] || '';
 
+  // 결과지 이미지 캡처 및 다운로드 함수
+  const downloadImage = async () => {
+    if (resultRef.current) {
+      const canvas = await html2canvas(resultRef.current, { scale: 2 }); // 고해상도 캡처
+      const image = canvas.toDataURL('image/png'); // PNG 이미지 변환
+
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = `profile_result.png`; // 파일명 설정
+      link.click();
+    }
+  };
+
+
+  const highlightText = (text: string) => {
+    const highlightKeywords = ["사랑의 언어", "수면", "취미", "내가 원하는 팀 분위기"];
+    const regex = new RegExp(`(${highlightKeywords.join('|')})`, 'g');
+
+    return text.split(regex).map((part, index) =>
+      highlightKeywords.includes(part) ? (
+        <span key={index} className="highlight">{part}</span> // 특정 단어 하이라이트
+      ) : (
+        <span key={index}>{part}</span> // 일반 텍스트
+      )
+    );
+  };
+
   return (
     <div className="Result">
       <div className="Result_container">
         <h1>PROFILE</h1>
-        
         <div className="Result_profile">
           <div className="Result_profile_left">
             <div className="Result_profile_image_container">
-              <div className="Result_mbti_text">{userInfo.mbti}</div>
+              {/* <div className="Result_mbti_text">{userInfo.mbti}</div> */}
               <img
                 className="Result_profile_image"
                 src={profileImage}
@@ -85,16 +114,22 @@ const Result: React.FC = () => {
             <div className="Result_profile_info">
               <h2>{userInfo.name}</h2>
               <p>{userInfo.birthDate}</p>
-              <p>{userInfo.mbti} {userInfo.enneagram}</p>
+              <p>
+                <span className="highlight-mbti">{userInfo.mbti}</span> {userInfo.enneagram}
+              </p>
+              <p>
+                <span className="highlight-major">{userInfo.major}</span>
+              </p>
               <p>{userInfo.address}</p>
             </div>
+
           </div>
-          
+
           <div className="Result_profile_right">
             <div className="Result_answers_left">
               {answers.slice(0, 5).map((item, index) => (
                 <div key={index} className="Result_answer_item">
-                  <h3 style={{ whiteSpace: 'pre-line' }}>{item.question}</h3>
+                  <h3 style={{ whiteSpace: 'pre-line' }}>{highlightText(item.question)}</h3>
                   <p>{item.answer}</p>
                 </div>
               ))}
@@ -102,12 +137,12 @@ const Result: React.FC = () => {
             <div className="Result_answers_right">
               {answers.slice(5).map((item, index) => (
                 <div key={index} className="Result_answer_item">
-                  <h3 style={{ whiteSpace: 'pre-line' }}>{item.question}</h3>
+                  <h3 style={{ whiteSpace: 'pre-line' }}>{highlightText(item.question)}</h3>
                   <p>{item.answer}</p>
                 </div>
               ))}
               <div className="Result_buttons">
-                <button className="share_button" onClick={() => {}}>결과지 공유하기</button>
+                <button className="share_button" onClick={() => {downloadImage}}>결과지 공유하기</button>
                 <button className="retry_button" onClick={() => navigate('/info')}>
                   <img src="/src/assets/images/refresh-cw-01.png" alt="다시하기" />
                 </button>
@@ -115,6 +150,7 @@ const Result: React.FC = () => {
             </div>
           </div>
         </div>
+        {/* <p className="save_instruction">결과지를 꾹 눌러 저장해주세요</p> */}
       </div>
     </div>
   );

@@ -88,15 +88,17 @@
   white-space: pre-line;
   line-height: 1.5;
   font-weight: 600;
-  color: #1A1A1A;
+  color: #444444;
 }
 
 .Survey_options {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  align-items: center;
+  justify-content: center; /* 세로 중앙 정렬 */
+  gap: 35px;
   width: 100%;
-  margin-top: auto;
+  height: 100%; /* 컨테이너 높이를 설정하여 정렬 가능하게 만듦 */
   padding-bottom: 172px;
 }
 
@@ -111,7 +113,7 @@
   text-align: center;
   cursor: pointer;
   white-space: pre-line;
-  color: #1A1A1A;
+  color: #444444;
   outline: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -126,7 +128,7 @@
 .Survey_option.selected {
   border: 2px solid #B9D889;
   background-color: #FFFFFF;
-  color: #000000;
+  color: #444444;
 }
 
 .Survey_buttons {
@@ -144,7 +146,7 @@
   max-width: 560px;
   height: 56px;
   border-radius: 1000px;
-  background-color: #B9D889;
+  background-color: #9C9C9C;
   color: #444444;
   border: none;
   font-size: 20px;
@@ -152,7 +154,13 @@
   margin-top: 48px;
 }
 
-@media screen and (max-width: 360px) {
+/* 활성화 상태 (초록색) */
+.Survey_next.active {
+  background-color: #B9D889;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
   .Survey {
     height: 100vh;
     overflow: hidden;
@@ -162,25 +170,26 @@
 
   .Survey_progress_container {
     position: fixed;
-    top: 44px;
+    top: 47px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 32px);
+    width: 328px;
     height: 4px;
     z-index: 100;
   }
 
   .Survey_back_button {
     position: fixed;
-    top: 16px;
-    left: 16px;
-    width: 16px;
-    height: 16px;
+    top: -30px;
+    left: 5px;
+    width: 12px;
+    height: 17px;
     cursor: pointer;
     background: none;
     border: none;
     padding: 0;
-    z-index: 101;
+    z-index: 105;
+    display: block !important; /* 강제 표시 */
   }
 
   .Survey_progress {
@@ -191,6 +200,7 @@
     overflow: hidden;
     margin: 0;
   }
+
 
   .Survey_progress_bar {
     height: 100%;
@@ -217,12 +227,6 @@
     min-height: 0;
   }
 
-  .question_container {
-    min-height: 0;
-    padding: 0;
-    margin: 0;
-  }
-
   .question_container h1 {
     font-size: 24px !important;
     margin-top: 47px;
@@ -244,7 +248,7 @@
 
   .Survey_option {
     font-size: 14px;
-    padding: 14px;
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #9C9C9C;
@@ -254,8 +258,8 @@
   }
 
   .Survey_option.selected {
-    border: none;
-    background-color: #B9D889;
+    border: 1px solid #B9D889;
+    background-color: #FFFFFF;  
     color: #444444;
   }
 
@@ -269,12 +273,16 @@
     font-size: 20px;
     white-space: nowrap;
     z-index: 10;
-    background-color: #B9D889;
+    background-color: #9c9c9c;
     color: #444444;
     border: none;
     border-radius: 1000px;
     font-weight: bold;
     font-family: 'Pretendard-Bold', sans-serif;
+  }
+
+  .Survey_next.active {
+    background-color: #B9D889;
   }
 }
 
@@ -323,6 +331,11 @@
 
   .Survey h1 {
     font-size: 36px;
+  }
+
+  .progress_text {
+    text-align: center;
+    margin-top: 3px; 
   }
 
   .Survey_next {
