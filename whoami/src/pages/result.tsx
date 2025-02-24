@@ -18,6 +18,7 @@ import estp from '../assets/images/ESTP.png';
 import estj from '../assets/images/ESTJ.png';
 import esfp from '../assets/images/ESFP.png';
 import esfj from '../assets/images/ESFJ.png';
+import refreshIcon from '../assets/images/refresh-cw-01.png';
 
 interface UserInfo {
   name: string;
@@ -171,7 +172,7 @@ const Result: React.FC = () => {
                   결과지 공유하기
                 </button>
                 <button className="retry_button" onClick={() => navigate('/info')}>
-                  <img src="/src/assets/images/refresh-cw-01.png" alt="다시하기" />
+                  <img src={refreshIcon} alt="다시하기" />
                 </button>
               </div>
             </div>
