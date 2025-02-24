@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import html2canvas from 'html2canvas'; 
+import html2canvas from 'html2canvas';
 import '../styles/result.css';
 import intp from '../assets/images/INTP.png';
 import intj from '../assets/images/INTJ.png';
@@ -55,7 +55,7 @@ const mbtiImages = {
 const Result: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const resultRef = useRef<HTMLDivElement>(null); // 캡처 영역 참조
+  const resultRef = useRef<HTMLDivElement>(null);  // 캡처할 요소 지정
 
   // location.state가 없으면 info 페이지로 리다이렉트
   if (!location.state) {
@@ -72,14 +72,35 @@ const Result: React.FC = () => {
 
   // 결과지 이미지 캡처 및 다운로드 함수
   const downloadImage = async () => {
-    if (resultRef.current) {
-      const canvas = await html2canvas(resultRef.current, { scale: 2 }); // 고해상도 캡처
-      const image = canvas.toDataURL('image/png'); // PNG 이미지 변환
+    if (!resultRef.current) {
+      console.error("❌ resultRef가 존재하지 않습니다. 캡처할 요소를 확인하세요.");
+      return;
+    }
 
+    try {
+      console.log("📸 캡처 시작...");
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      const canvas = await html2canvas(resultRef.current, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#FFFFFF',
+        logging: true,
+      });
+
+      console.log("📸 캡처 완료!");
+
+      const image = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       link.href = image;
-      link.download = `profile_result.png`; // 파일명 설정
+      link.download = 'whoami_result.png';
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
+      console.log("✅ 이미지 다운로드 완료!");
+    } catch (error) {
+      console.error("❌ 이미지 다운로드 오류:", error);
     }
   };
 
@@ -98,7 +119,7 @@ const Result: React.FC = () => {
   };
 
   return (
-    <div className="Result">
+    <div className="Result" ref={resultRef}>
       <div className="Result_container">
         <h1>PROFILE</h1>
         <div className="Result_profile">
@@ -109,6 +130,7 @@ const Result: React.FC = () => {
                 className="Result_profile_image"
                 src={profileImage}
                 alt="프로필 이미지"
+                crossOrigin="anonymous"
               />
             </div>
             <div className="Result_profile_info">
@@ -142,7 +164,12 @@ const Result: React.FC = () => {
                 </div>
               ))}
               <div className="Result_buttons">
-                <button className="share_button" onClick={() => {downloadImage}}>결과지 공유하기</button>
+                <button className="share_button" onClick={() => {
+                  console.log("📸 '결과지 공유하기' 버튼 클릭됨");
+                  downloadImage();
+                }}>
+                  결과지 공유하기
+                </button>
                 <button className="retry_button" onClick={() => navigate('/info')}>
                   <img src="/src/assets/images/refresh-cw-01.png" alt="다시하기" />
                 </button>
